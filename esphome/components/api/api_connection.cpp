@@ -6,6 +6,10 @@
 #include "esphome/core/hal.h"
 #include <cerrno>
 
+#ifndef USE_WEBSERVER_PORT
+	#define USE_WEBSERVER_PORT 80  // NOLINT
+#endif
+
 #ifdef USE_DEEP_SLEEP
 #include "esphome/components/deep_sleep/deep_sleep_component.h"
 #endif
