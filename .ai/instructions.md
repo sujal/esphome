@@ -2,6 +2,52 @@
 
 This document provides essential context for AI models interacting with this project. Adhering to these guidelines will ensure consistency and maintain code quality.
 
+---
+
+## Fork Information
+
+**This is a personal fork of ESPHome** (upstream: `git@github.com:esphome/esphome.git`).
+
+### LilyGo T5 4.7" E-Paper Display Support
+
+This fork previously contained custom components for the LilyGo T5 4.7" e-paper display. These components have been **moved to an external repository** to simplify maintenance:
+
+- **External Components Repository:** `sujal/esphome-lilygo-t5-47`
+- **Local Path:** `/Users/sujal/code/thirdparty/esphome-lilygo-t5-47`
+
+#### Components Provided:
+- `lilygo_t5_47_display` - E-paper display driver using epdiy library
+- `lilygo_t5_47_battery` - Battery voltage sensor
+
+#### Usage Example:
+```yaml
+esphome:
+  name: my-lilygo-display
+  platform: ESP32
+  board: esp32dev
+
+external_components:
+  - source: github://sujal/esphome-lilygo-t5-47
+    components: [lilygo_t5_47_display, lilygo_t5_47_battery]
+
+display:
+  - platform: lilygo_t5_47_display
+    id: t5_display
+    clear_screen: true
+    temperature: 25
+    landscape: true
+
+sensor:
+  - platform: lilygo_t5_47_battery
+    voltage:
+      name: "Battery Voltage"
+```
+
+#### Original Source:
+Components originally ported from `git@github.com:vbaksa/esphome.git`, updated for ESPHome 2025.x compatibility.
+
+---
+
 ## 1. Project Overview & Purpose
 
 *   **Primary Goal:** ESPHome is a system to configure microcontrollers (like ESP32, ESP8266, RP2040, and LibreTiny-based chips) using simple yet powerful YAML configuration files. It generates C++ firmware that can be compiled and flashed to these devices, allowing users to control them remotely through home automation systems.
